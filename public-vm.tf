@@ -36,6 +36,10 @@ resource "yandex_compute_instance" "public-nat-instance" {
   }
 }
 
+data "yandex_compute_image" "ubuntu1" {
+  family = "ubuntu-2004-lts"
+}
+
 resource "yandex_compute_instance" "public-host-instance" {
   name        = "public-host-instance"
   platform_id = "standard-v1"
@@ -48,7 +52,7 @@ resource "yandex_compute_instance" "public-host-instance" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd8emvfmfoaordspe1jr"
+      image_id = data.yandex_compute_image.ubuntu1.image_id
     }
   }
 

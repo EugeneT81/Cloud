@@ -15,6 +15,10 @@ resource "yandex_vpc_subnet" "private-subnet" {
   route_table_id = yandex_vpc_route_table.privat-rt.id
 }
 
+data "yandex_compute_image" "ubuntu" {
+  family = "ubuntu-2004-lts"
+}
+
 resource "yandex_compute_instance" "private-host-instance" {
   name        = "host-instance"
   platform_id = "standard-v1"
@@ -27,7 +31,7 @@ resource "yandex_compute_instance" "private-host-instance" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd8emvfmfoaordspe1jr"
+      image_id = data.yandex_compute_image.ubuntu.image_id
     }
   }
 
