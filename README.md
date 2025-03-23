@@ -17,6 +17,8 @@ resource "yandex_vpc_route_table" "privat-rt" {
 
 [Public part](public-vm.tf)
 
+[Variables](variables.tf)
+
 3. VMs:
 
 ![VMs](30.png)
